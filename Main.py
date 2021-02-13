@@ -231,3 +231,11 @@ class Main:
         tk.Grid.columnconfigure(root, 2, weight=1)
         tk.Grid.columnconfigure(root, 3, weight=1)
   
+  def selectfile_callback(self):
+        try:
+            name = filedialog.askopenfile()
+            self._file_url.set(name.name)
+            # print(name.name)
+        except Exception as e:
+            self._status.set(e)
+            self.status_label.update()
