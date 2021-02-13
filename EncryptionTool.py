@@ -40,3 +40,11 @@ class EncryptionTool:
             if not data:
                 break
             yield data
+            
+        def encrypt(self):
+        # create a cipher object
+        cipher_object = AES.new(
+            self.hashed_key_salt["key"],
+            AES.MODE_CFB,
+            self.hashed_key_salt["salt"]
+        )
