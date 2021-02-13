@@ -63,3 +63,9 @@ class EncryptionTool:
         input_file.close()
         output_file.close()
         del cipher_object
+      
+       def abort(self):
+        if os.path.isfile(self.encrypt_output_file):
+            os.remove(self.encrypt_output_file)
+        if os.path.isfile(self.decrypt_output_file):
+            os.remove(self.decrypt_output_file)
