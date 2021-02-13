@@ -260,3 +260,56 @@ class Main:
                                  fg="#ffffff", bg="#aaaaaa")
         self.status_label.update()
 
+   def encrypt_callback(self):
+        self.freeze_controls()
+
+        try:
+            self._cipher = EncryptionTool(
+                self._file_url.get(),
+                self._secret_key.get(),
+                self._salt.get()
+            )
+            for percentage in self._cipher.encrypt():
+                if self.should_cancel:
+                    break
+                percentage = "{0:.2f}%".format(percentage)
+                self._status.set(percentage)
+                self.status_label.update()
+            self._status.set("File Encrypted!")
+            if self.should_cancel:
+                self._cipher.abort()
+                self._status.set("Cancelled!")
+            self._cipher = None
+            self.should_cancel = False
+        except Exception as e:
+            # print(e)
+            self._status.set(e)
+
+        self.unfreeze_controls()
+
+   def decrypt_callback(self):
+        self.freeze_controls()
+
+        try:
+            self._cipher = EncryptionTool(
+                self._file_url.get(),
+                self._secret_key.get(),
+                self._salt.get()
+            )
+            for percentage in self._cipher.decrypt():
+                if self.should_cancel:
+                    break
+                percentage = "{0:.2f}%".format(percentage)
+                self._status.set(percentage)
+                self.status_label.update()
+            self._status.set("File Decrypted!")
+            if self.should_cancel:
+                self._cipher.abort()
+                self._status.set("Cancelled!")
+            self._cipher = None
+            self.should_cancel = False
+        except Exception as e:
+            # print(e)
+            self._status.set(e)
+
+        self.unfreeze_controls()
