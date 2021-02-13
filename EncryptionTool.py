@@ -41,7 +41,7 @@ class EncryptionTool:
                 break
             yield data
             
-        def encrypt(self):
+      def encrypt(self):
         cipher_object = AES.new(
             self.hashed_key_salt["key"],
             AES.MODE_CFB,
