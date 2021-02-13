@@ -33,3 +33,10 @@ class EncryptionTool:
 
 
         self.hash_key_salt()
+            
+      def read_in_chunks(self, file_object, chunk_size=1024):
+        while True:
+            data = file_object.read(chunk_size)
+            if not data:
+                break
+            yield data
