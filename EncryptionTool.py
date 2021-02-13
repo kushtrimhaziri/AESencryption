@@ -69,3 +69,19 @@ class EncryptionTool:
             os.remove(self.encrypt_output_file)
         if os.path.isfile(self.decrypt_output_file):
             os.remove(self.decrypt_output_file)
+            
+      def hash_key_salt(self):
+
+        hasher = hashlib.new(self.hash_type)
+        hasher.update(self.user_key)
+
+        self.hashed_key_salt["key"] = bytes(hasher.hexdigest()[:32], "utf-8")
+
+        del hasher
+
+        hasher = hashlib.new(self.hash_type)
+        hasher.update(self.user_salt)
+
+        self.hashed_key_salt["salt"] = bytes(hasher.hexdigest()[:16], "utf-8")
+
+        del hasher
