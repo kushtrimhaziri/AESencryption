@@ -56,3 +56,12 @@ class EncryptionTool:
 
         for piece in self.read_in_chunks(input_file, self.chunk_size):
             e
+            
+        decrypted_content = cipher_object.decrypt(piece)
+        output_file.write(decrypted_content)
+        done_chunks += 1
+        yield (done_chunks / self.total_chunks) * 100
+
+        input_file.close()
+        output_file.close()
+        del cipher_object
