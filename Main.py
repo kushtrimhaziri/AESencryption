@@ -313,3 +313,8 @@ class Main:
             self._status.set(e)
 
         self.unfreeze_controls()
+
+if __name__ == "__main__":
+    ROOT = tk.Tk()
+    MAIN_WINDOW = Main(ROOT)
+    ROOT.mainloop()
