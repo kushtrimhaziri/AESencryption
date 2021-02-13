@@ -47,3 +47,12 @@ class EncryptionTool:
             AES.MODE_CFB,
             self.hashed_key_salt["salt"]
         )
+      
+       self.abort() 
+
+        input_file = open(self.user_file, "rb")
+        output_file = open(self.encrypt_output_file, "ab")
+        done_chunks = 0
+
+        for piece in self.read_in_chunks(input_file, self.chunk_size):
+            e
