@@ -12,6 +12,15 @@ from EncryptionTool import EncryptionTool
 
 class Main:
   
+      THIS_FOLDER_G = ""
+    if getattr(sys, "frozen", False):
+        # frozen
+        THIS_FOLDER_G = os.path.dirname(sys.executable)
+    else:
+        # unfrozen
+        THIS_FOLDER_G = os.path.dirname(os.path.realpath(__file__))
+
+  
     def __init__(self, root):
         self.root = root
         self._cipher = None
