@@ -239,3 +239,24 @@ class Main:
         except Exception as e:
             self._status.set(e)
             self.status_label.update()
+  
+   def freeze_controls(self):
+        self.file_entry.configure(state="disabled")
+        self.key_entry.configure(state="disabled")
+        self.select_btn.configure(state="disabled")
+        self.encrypt_btn.configure(state="disabled")
+        self.decrypt_btn.configure(state="disabled")
+        self.reset_btn.configure(text="CANCEL", command=self.cancel_callback,
+                                 fg="#ed3833", bg="#fafafa")
+        self.status_label.update()
+
+   def unfreeze_controls(self):
+        self.file_entry.configure(state="normal")
+        self.key_entry.configure(state="normal")
+        self.select_btn.configure(state="normal")
+        self.encrypt_btn.configure(state="normal")
+        self.decrypt_btn.configure(state="normal")
+        self.reset_btn.configure(text="RESET", command=self.reset_callback,
+                                 fg="#ffffff", bg="#aaaaaa")
+        self.status_label.update()
+
