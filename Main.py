@@ -313,6 +313,26 @@ class Main:
             self._status.set(e)
 
         self.unfreeze_controls()
+          def reset_callback(self):
+        self._cipher = None
+        self._file_url.set("")
+        self._secret_key.set("")
+        self._salt.set("")
+        self._status.set("---")
+
+    def cancel_callback(self):
+        self.should_cancel = True
+
+    def show_help_callback(self):
+        messagebox.showinfo(
+            "How To",
+            """1.Hyni ne aplikacioni dhe zgjedhni filen te cilin doni ta enkriptoni duke shtypur butonin Open File apo duke shenuar manualisht pathin
+2. Shenoni celesin tuaj privat dhe pastaj mbani ne mend ate.
+3. Kliko butonin Encrypt per te enkriptuar filen tuaj. File i enkriptuar do te ruhet ne direktoriumin e njejte te filet paraprak
+4. Nese deshironi te dekriptoni filen tuaj zgjedhni filen me extension .kryp dhe shenoni celesin tuaj me te cilin doni te dekriptoni filen.File i dekriptuar do te ruhet ne po te njejtin direktorium.
+"""
+        )
+
 
 if __name__ == "__main__":
     ROOT = tk.Tk()
